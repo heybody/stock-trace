@@ -7,7 +7,7 @@ function route(handle, pathname,request,response) {
         console.log('reuqest for ' + pathname + ' deal successfully')
     } else {
         console.log('route not found for ' + pathname);
-        response.writeHead(200,{"Content-Type":"text/plain"});
+        response.writeHead(404,{"Content-Type":"text/plain"});
         response.write("not found!");
         response.end();
     }
