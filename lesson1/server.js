@@ -1,10 +1,20 @@
-function start(){
-    var http = require('http');
-    http.createServer(function (req, res) {
-        res.writeHead(200, {'Content-Type': 'text/plain'});
-        res.write("test");
-        res.end();
-        
-    }).listen(process.env.PORT, process.env.IP);
+var http = require("http");
+var url = require("url");
+
+function start(route,handlers){
+  function onRequest(request, response){
+    var pathname = url.parse(request.url).pathname;
+    console.log("Request for "+ pathname +" received.");
+
+    route(pathname);
+    handlers[pathname](request);
+    response.writeHead(200,{"Content-Type":"text/plain"});
+    response.write("Hello World");
+    response.end();
+  }
+
+  http.createServer(onRequest).listen(process.env.PORT, process.env.IP);;
+  console.log("Server has started.");
 }
+
 exports.start = start;
