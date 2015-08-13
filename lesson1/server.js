@@ -1,10 +1,24 @@
 var http = require("http");
 var url = require("url");
 
-function start(route,handle){
-  function onRequest(request, response){
+function start(route, handle) {
+  function onRequest(request, response) {
+    var postData = "";
+    var i = 0;
     var pathname = url.parse(request.url).pathname;
-    route(handle,pathname,request,response);
+    console.log("Request for " + pathname + " received.");
+
+    request.setEncoding("utf8");
+
+    request.addListener("data", function(postDataChunk) {
+      postData += postDataChunk;
+      console.log("Received POST data chunk '" +
+        postDataChunk + "'."+i++);
+    });
+    request.addListener("end", function() {
+      route(handle, pathname, request, response);
+    });
+
   }
 
   http.createServer(onRequest).listen(process.env.PORT, process.env.IP);
