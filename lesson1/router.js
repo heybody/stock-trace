@@ -1,9 +1,9 @@
-function route(handle, pathname,postData,response) {
+function route(handle, pathname,request,response) {
     // console.log("About to route a request for "+ pathname);
     // call handle
     var fn = handle[pathname];
     if (typeof fn == "function") {
-        fn(postData,response);
+        fn(request,response);
         console.log('reuqest for ' + pathname + ' deal successfully')
     } else {
         console.log('route not found for ' + pathname);
