@@ -3,8 +3,11 @@ var router = require("./router");
 var handlers = require("./handlers");
 
 var handle ={}
-handle["/"]= handlers.start;
-handle["/start"]= handlers.start;
-handle["/upload"]= handlers.upload;
+handle["/"]= handlers.handlers.start;
+// route by method 
+for(var i in handlers.handlers ){
+    handle['/'+i] = handlers.handlers[i];
+}
+
 
 server.start(router.route, handle);
