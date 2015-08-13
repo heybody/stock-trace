@@ -1,6 +1,7 @@
 var http = require("http");
 var url = require("url");
 
+// server start
 function start(route, handle) {
   function onRequest(request, response) {
     var postData = "";
@@ -16,7 +17,7 @@ function start(route, handle) {
         postDataChunk + "'."+i++);
     });
     request.addListener("end", function() {
-      route(handle, pathname, request, response);
+      route(handle, pathname, request, postData);
     });
 
   }
