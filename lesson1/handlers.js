@@ -4,13 +4,13 @@ function start(request, response) {
     var content = '';
     exec("ls -lah", function(error, stdout, stderr) {
         content = stdout;
+        console.log("Request handler 'start' was called.");
+        response.writeHead(200, {
+            "Content-Type": "text/plain"
+        });
+        response.write(content);
+        response.end();
     });
-    console.log("Request handler 'start' was called.");
-    response.writeHead(200, {
-        "Content-Type": "text/plain"
-    });
-    response.write(content);
-    response.end();
 
 }
 
