@@ -1,16 +1,17 @@
-function start(request, response) {
-    function sleep(milliSeconds) {
-        var startTime = new Date().getTime();
-        while (new Date().getTime() < startTime + milliSeconds);
-    }
+var exec = require("child_process").exec;
 
-    sleep(10000);
+function start(request, response) {
+    var content = '';
+    exec("ls -lah", function(error, stdout, stderr) {
+        content = stdout;
+    });
     console.log("Request handler 'start' was called.");
     response.writeHead(200, {
         "Content-Type": "text/plain"
     });
-    response.write("start!");
+    response.write(content);
     response.end();
+
 }
 
 function upload(request, response) {
