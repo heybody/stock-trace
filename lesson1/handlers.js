@@ -1,5 +1,5 @@
 var exec = require("child_process").exec;
-
+var querystring = require("querystring");
 function start(postData, response) {
     var content = '';
     var body ='<html>'+
@@ -25,7 +25,7 @@ function upload(postData, response) {
     response.writeHead(200, {
         "Content-Type": "text/plain"
     });
-    response.write("upload!");
+    response.write("upload! send msg= text:"+querystring.parse(postData).text);
     response.end();
 }
 
