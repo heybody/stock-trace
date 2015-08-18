@@ -7,6 +7,7 @@ function heavyCompute(n, callback) {
             count += 1;
         }
     }
+    
 
     callback(count);
 }
