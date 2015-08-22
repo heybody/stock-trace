@@ -1,6 +1,6 @@
 {
   "name": "stock-trace",
-  "version": "1.0",
+  "version": "1.0.0",
   "description": "股票追踪系统",
   "keywords": [
     "schedule",
@@ -11,6 +11,7 @@
   "main": "app.js",
   "dependencies": {
     "node-schedule": "0.2.9",
-    "mongodb": "2.0.42"
+    "mongodb": "2.0.42",
+    "generic-pool":"2.2.0"
   }
 }
